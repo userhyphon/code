@@ -1,0 +1,1198 @@
+import random
+import time
+answer = ["y","yes","ye","yeah","yea","yuh","sure","of course"]
+reputation_points = 10
+relationship_amelix = 50
+relationship_xandr = 20
+relationship_nico = 0
+brain = 10
+brawn = 10
+caution = 10
+courage = 10
+injury = 0
+supplies = 1
+def displayIntro():
+   tut = input("\nWould you like a runthrough on how to play? ")
+   if tut in answer:
+      time.sleep(1)
+      print("""\nYou can input what you would liked to be called throughout the game, as well as your gender that will determine your pronouns. Keep in mind that once you pick, you can't go back, so choose carefully!
+      
+The storyline follows as you navigate a dysoptian world——a place destroyed after natural calamities. In this place, there are 2 major factions: the Mercenary Faction and the Scholar Faction. You are a part of the Scholar Faction
+            
+You will go about your day, making various choices. Your actions will impact the storyline as well as the endings you earn; there are FOUR endings in total.
+
+At the start of the game, you are set reputation points, and certain relationship points with the interactable characters. You are also set personality points.
+
+Your actions will either increase or decrease these points. These points are important——they will influence storypaths.
+
+You are given an inventory to store items, should you choose to collect them. These items may help you later on.
+
+What you do matters——the fate of the world lies in \x1B[3myour\x1B[0m hands. Discover what secrets the world holds, as the secrets of your past.
+
+Good luck.""")
+      time.sleep(20)
+def playerInput():
+   time.sleep(1)
+   print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
+   time.sleep(1)
+   global name
+   name = input("\nWhat would you like to be called, traveller? ")
+   time.sleep(1)
+   global pronouns
+   pronouns = input("\nWhat is your gender? ")
+   global pron1
+   global pron2
+   global pron3
+   global gender
+   global grandbaby
+   if pronouns == "female":
+      pron1 = "she"
+      pron2 = "her"
+      pron3 = "hers"
+      gender = "girl"
+   elif pronouns == "male":
+      pron1 = "he"
+      pron2 = "his"
+      pron3 = "his"
+      gender = "boy"
+   else:
+      time.sleep(1)
+      pron1 = input("\nWhat is your preferred FIRST pronoun [e.g. he/she/they]? ")
+      time.sleep(1)
+      pron2 = input("\nWhat is your preferred SECOND pronoun [e.g. his/her/their]? ")
+      time.sleep(1)
+      pron3 = input("\nWhat is your preferred THIRD pronoun [e.g. his/hers/theirs]? ")
+      gender = "kid"
+def shoppingScene():
+   global items
+   items = ["dagger","waterskin","rope","quilt","crossbow","arrow","notebook","lead","lantern","matches"]
+   global items_price
+   items_price = [100, 30, 40, 70, 150, 35, 20, 2, 80, 30]
+   time.sleep(1)
+   global coinbag
+   coinbag = random.randint(100,300)
+   print('\nYou decide to open the bag you found.\n')
+   time.sleep(2)
+   print(f'Inside, you find {coinbag} coins.\n')
+   time.sleep(2)
+   if coinbag > 250:
+      print(f'"How is {pron1} so lucky?!" disbelief is written all over Amelix\'s face. "You\'re like——super mega rich now."\n')
+   elif coinbag < 150:
+      print('"Woah..." Amelix starts skeptically, "money is money, so I guess we can\'t be complaining."\n')
+   else:
+      print('"Does anyone else find this weird? No? Just me?" Amelix\'s head whips around, her jaw slack with confusion.\n')
+   time.sleep(3)
+   print('"What do you plan to do with all that money?" Xandr asks slowly——warily.\n')
+   time.sleep(3)
+   print('"Uh, shopping spree... duh?" you giggle, sharing a devious smile with Amelix.\n')
+   time.sleep(3)
+   print('"Why don\'t you try saving——"\n')
+   time.sleep(2)
+   print('"Boo... bor-ring!" Amelix sticks her tongue out, linking her arm in yours and dragging you towards the shopping district of your camp.\n')
+   time.sleep(5)
+   print('"All this money won\'t last forever!"\n')
+   time.sleep(2)
+   print('"I\'m pretty sure it \x1B[3mwill\x1B[0m if——"\n')
+   time.sleep(2)
+   print('You didn\'t hear everything——not with Amelix\'s unwavering intent on going shopping——but you can guess what he was going to say.\n')
+   time.sleep(5)
+   print('It isn\'t long until you reach the shopping district.\n')
+   time.sleep(2)
+   print("You peruse the stalls, items that you could never look in the eye before finally catching your attention.\n")
+   time.sleep(4)
+   print('''You can see:
+
+1)    dagger —— 100c
+2)    waterskin —— 30c
+3)    rope —— 40c
+4)    quilt —— 70c
+5)    crossbow —— 150c
+6)    arrows —— 35c
+7)    notebook —— 20c
+8)    lead —— 5c
+9)    lantern —— 80c
+10)   matches —— 30c
+
+You scan the items.''')
+   time.sleep(3)
+   global spent
+   spent = 0
+   coins_left = coinbag
+   while True:
+      purchase = int(input('\nWhat will you buy? (1 - 10) '))
+      global item_order
+      item_order = purchase - 1
+      if purchase >= 1 & purchase <= 10:
+         time.sleep(1)
+         if coins_left - items_price[item_order] < 0:
+            print('\nYou have gone over the budget. You cannot buy this item.\n')
+            time.sleep(1)
+         else:
+            spent += items_price[item_order]
+            coins_left = coinbag - spent
+            print(f'\nYou have bought: {items[item_order]}\n')
+            time.sleep(1)
+            print(f'You have {coins_left} coins left.\n')
+            time.sleep(1)         
+      else:
+         time.sleep(1)
+         print('\nThat item is not available, please pick again.')
+         time.sleep(1)
+      endShopping = input('Do you wish to buy anything else? ')
+      time.sleep(1)
+      if endShopping not in answer:
+         break
+      brains_count = ["3","7","8","9","10"]
+      brawns_count = ["1","2","3","5","6"]
+      if purchase in brains_count:
+         brain + 10
+      elif purchase in brawns_count:
+         brawn + 10
+def avoided():
+   print('When you emerge from the Grand Sage’s cabin, Amelix rushes towards you.\n')
+   time.sleep(3)
+   print('“How did it go? Did you get scolded? What’s your punishment?” She asks a flurry of questions——though, you can’t get mad at her with the worried expression on her face.\n')
+   time.sleep(6)
+   print('“You rat me out and then you feel bad?” you jab her in the ribs teasingly, “just a 7-day probation, nothing new.”\n')
+   time.sleep(5)
+   print('Amelix sighs in relief before she turns to look at you again.\n')
+   time.sleep(2)
+   print('“Now do you mind explaining?”\n')
+   time.sleep(2)
+   print('It wouldn’t hurt to. You can\'t expose everything, though.\n')
+   time.sleep(2)
+   print('“I heard a sound, and I thought you were in trouble, so I went to help,” you start explaining, “but instead, I ran into some people and heard some things I shouldn’t, so they were after me.” You shrug as if it were an everyday occurrence.\n')
+   time.sleep(7)
+   print('“You did it… because you thought I was in trouble?”\n')
+   time.sleep(3)
+   print('"Yes...?"\n')
+   relationship_amelix + 10
+   time.sleep(2)
+   print('Amelix’s hand reaches over before you can stop her, and she ruffles up your hair.\n')
+   time.sleep(4)
+   print('“And here I thought you decided to eat the food all on your own!” She giggles.\n')
+   time.sleep(4)
+   print('“Hey! Do you know how heavy that sac was?! How could I eat the entire thing?"\n')
+   time.sleep(4)
+   print('Your playful banter stays the same no matter how many years pass; you’ve been by each other’s side through thick and thin.\n')
+   time.sleep(6)
+def death():
+   time.sleep(1)
+   print('\n"What are you looking around for?"\n')
+   time.sleep(2)
+   print("His voice makes you look at him, and you search his eyes for any hints of violence.\n")
+   time.sleep(4)
+   print('It\'s too late to run now anyways.\n')
+   time.sleep(2)
+   print('You can only hope——\n')
+   time.sleep(1)
+   print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
+   time.sleep(3)
+   print('\033[1mYOU HAVE DIED\033[0m\n')
+   time.sleep(3)
+   quit()
+def running():
+   print('\nYou bolt, not caring to look behind you. The sac of supplies is really weighing you down now——and by the sound of the footsteps behind you, they’re getting closer.\n')
+   time.sleep(5)
+   print('It’s do or die.\n')
+   time.sleep(1)
+   print('''\033[1ma) Make use of what you have; chuck your sac behind you as a temporary barrier.
+                             
+b) Persevere——you were a track sensation when the world was——not yet destroyed.\033[0m\n''')
+   time.sleep(1)
+   choicefour = input('What will you do? ')
+   time.sleep(1)
+   if choicefour == "a":
+      brain + 20
+      print('\nYou chuck the open sac, the cans rolling out and blocking the path.\n')
+      supplies - 1
+      time.sleep(3)
+      print('“What the——“ A tumbling crash cuts off their words, followed by a string of curses as a second crash echoes soon after.\n')
+      time.sleep(4)
+      print('\x1B[3mStrike!\x1B[0m\n')
+      time.sleep(1)
+      print('You\'re such a genius that you scare yourself sometimes.\n')
+      time.sleep(2)
+      print('LOL.\n')
+      time.sleep(1)
+   elif choicefour == "b":
+      brawn + 25
+      print('\nYou run.\n')
+      time.sleep(1)
+      print('The weight is \x1B[3mreally\x1B[0m weighing you down now.\n')
+      time.sleep(2)
+      print('And as if by fate, your grip slips from its hold on the sac.\n')
+      supplies - 1
+      time.sleep(3)
+      print('Cans rolled out behind you as you dare to look back.\n')
+      time.sleep(2)
+      print('“What the——“ A tumbling crash cuts off their words, followed by a string of curses as a second crash echoes soon after.\n')
+      time.sleep(4)
+      print('\x1B[3mStrike!\x1B[0m\n')
+      time.sleep(1)
+      print('Not what you expected... but it works.\n')
+      time.sleep(2)
+   print('And then you run. You run and run and run——until you reach the entrance of the convenience store, panting and out of breath.\n')
+   time.sleep(4)
+def finishMission():
+   reputation_points + 10
+   relationship_xandr + 10
+   relationship_amelix - 10
+   time.sleep(1)
+   print('\nYou bag the pouch quickly\n')
+   time.sleep(2)
+   print('It didn\'t sound like a scream of fear...\n')
+   time.sleep(2)
+   print("And besides, you've seen Amelix fight. Rather, you should be making sure her opponent is okay.\n")
+   time.sleep(4)
+   print('You should finish your mission quickly, lest you get reprimanded again.\n')
+   time.sleep(3)
+   print('You wander around the store, inspecting each shelf to check if anything is left.\n')
+   time.sleep(3)
+   print('You manage to snag a few more cans of what looks to be fruit.\n')
+   time.sleep(3)
+   print('It\'ll do for now.\n')
+   time.sleep(2)
+   print('The wind blows through broken windows, echoeing creepily.\n')
+   time.sleep(3)
+   print('This feels like it\'s straight out of a horror film——\n')
+   time.sleep(2)
+   print('\x1B[3mAAAAGH\x1B[0m\n')
+   time.sleep(2)
+   print('...\n')
+   time.sleep(1)
+   print('Definitely not a death flag...\n')
+   time.sleep(3)
+   print('''\033[1ma) Famous last words——you're not keen on dying anytime soon. Curiosity killed the cat...
+
+b) ...But satisfaction brought it back. You finally understand how those teenagers in thrillers feel.\033[0m\n''')
+   time.sleep(1)
+   choicefive = input('What will you do? ')
+   time.sleep(1)
+   if choicefive == "a":
+      caution + 15
+      courage - 10
+      print('\nYou didn\'t hear anything.\n')
+      time.sleep(1)
+      print('You didn\'t hear anything.\n')
+      time.sleep(1)
+      print('You didn\'t hear anything...\n')
+      time.sleep(2)
+      print('To distract yourself, you wander outside of the store, carefully walking along cracked pavement.\n')
+      time.sleep(4)
+      print('''\033[1ma) It's killing you not to know, but it'd literally kill you if you did know. Still... maybe you should check anyway?
+
+b) Yeah, staying away from that creepy place is the best course of action. You watch your steps, feeling your heart lighten with relief.\033[0m\n''')
+      time.sleep(1)
+      choicesix = input('What are you thinking? ')
+      time.sleep(1)
+      if choicesix == "a":
+         courage + 5
+         brain - 5
+         print('\nAs you stroll, you become lost in your thoughts.\n')
+         time.sleep(2)
+         print('You feel kind of regretful that you——\n')
+         time.sleep(1)
+         print('"Aack!" you cry out as you trip on a crack, slamming your face on the hard concrete.\n')
+         brawn - 5
+         time.sleep(4)
+         print('\033[1mSTATUS: INJURED\033[0m\n')
+         injury + 1
+         time.sleep(2)
+         print('God that hurt.')
+         time.sleep(2)
+         print('If only you had investigated the noise! You wouldn\'t have tripped over——\n')
+         time.sleep(4)
+         print('You see droplets of blood staining the grey terrain.\n')
+         time.sleep(3)
+         print('You\'re bleeding.\n')
+         time.sleep(2)
+         print('Nevermind! Forget what you said! You\'re glad you stayed away!\n')
+         time.sleep(3)
+         print('Talk about a bad omen...\n')
+         time.sleep(2)
+      elif choicesix == "b":
+         brain + 10
+         caution + 5
+         print('\nYou\'re head feels lighter, and you can think better.\n')
+         time.sleep(2)
+         print('That place was giving you bad vibes.\n')
+         time.sleep(2)
+         print('You get the feeling you would\'ve found out something you\'d rather not know...\n')
+         time.sleep(4)
+   elif choicefive == "b":
+      time.sleep(1)
+      choiceOne()
+   print('The daylight soon dims during your walk.\n')
+   time.sleep(2)
+   print('You decide to round back. Amelix should be finishing up soon, too.\n')
+   time.sleep(3)
+   print('And you were right. As you reach the store, Amelix stands by its entrance.\n')
+   time.sleep(3)
+   print('''\033[1ma) Sneak up on her and scare her. 
+
+b) Call out her name to alert her that you\'re here.\033[0m\n''')
+   time.sleep(1)
+   choiceseven = input('What will you do? ')
+   time.sleep(1)
+   if choiceseven == "a":
+      courage + 10
+      caution - 5
+      relationship_amelix + 10
+      print('\nYou quietly make your way over, making sure to stay out of her line of sight.\n')
+      time.sleep(3)
+      print('And when you got close enough...\n')
+      time.sleep(2)
+      print('"Boo!"\n')
+      time.sleep(1)
+      print('Amelix spun around before you could react, her fist following her and colliding with your face.\n')
+      injury + 1
+      time.sleep(3)
+      print('An awkward silence follows.\n')
+      time.sleep(2)
+      print(f'"{name}? What the hell?" Amelix\'s looks shocked, and then worried, before suddenly laughing.\n')
+      time.sleep(4)
+      print('You glare at her——not with bad intentions, feeling blood run down from your nose.\n')
+      time.sleep(3)
+      if choicesix == "a":
+         print('Great. Another blood nose. You\'ve barely recovered from your fall earlier.\n')
+         time.sleep(3)
+         print('"Geez, you alright?" she asks, genuinly concerned when she notices.\n')
+         time.sleep(3)
+         print('"Never been better," you roll your eyes, "two blood noses in the span of barely five minutes. What have I even done to deserve this?"\n')
+         time.sleep(5)
+         print('It eases the tension, and Amelix laughs at your sarcasm.\n')
+         time.sleep(3)
+      if choicesix == "b":
+         print('\033[1mSTATUS: INJURED\033[0m\n')
+         brawn - 5
+         time.sleep(2)
+      print('"Okay, that one may have been on me," you admit, wiping the trailing blood with the back of your hand.\n')
+      time.sleep(4)
+      print('"It was \x1B[3mdefinitely your\x1B[0m fault," she\'s still laughing.\n')
+      time.sleep(3)
+      print('You throw her your sac of supplies, grumbling while you stomped away.\n')
+      time.sleep(3)
+      print('"Aww, c\'mon," she calls out after you, running to catch up, "you knew that would happen.\n')
+      time.sleep(3)
+   elif choiceseven == "b":
+      caution + 10
+      courage - 10
+      print('\nSneaking up on her is never a good idea; you learnt that the hard way.\n')
+      time.sleep(3)
+      print('"Amelix!"\n')
+      time.sleep(1)
+      print('She turns around, a smile replacing her bored expression when she spots you.\n')
+      time.sleep(3)
+      print('"I thought you had gotten yourself kidnapped——or killed," she joked.\n')
+      time.sleep(2)
+      print('You press your hand to your chest in mock offense, "you had that little faith in me?"\n')
+      time.sleep(3)
+      print('She punches your arm jokingly.\n')
+      time.sleep(2)
+   elif choicefive == "b":
+      time.sleep(1)      
+      choiceOne()
+def choiceOne():
+   relationship_amelix + 10
+   relationship_xandr - 5
+   print("\nIt wouldn’t hurt to check.\n")
+   time.sleep(2)
+   print("You creep closer towards the source of the noise——or rather, where you assume the noise came from. It is in this eerie silence that you realise the volume of your footsteps literally announcing your presence to whom it may concern. Way to go… \n")
+   time.sleep(7)
+   print("Rust has settled down on the metal railings and columns. And as you approach, you notice a strange, dim light emitting from that direction.\n")
+   time.sleep(5)
+   print("Totally not suspicious.\n")
+   time.sleep(2)
+   print("The weight of the bag of supplies cause your shoulder to ache——a stark remind of what you \x1B[3mshould\x1B[0m be doing right now.\n")
+   time.sleep(5)
+   print("Instead, you just \x1B[3mhave\x1B[0m to go play hero.\n")
+   time.sleep(3)
+   print('You\'re getting shivers just thinking about the reprimand you\'ll get.\n')
+   time.sleep(2)
+   print('Matter of fact...\n')
+   time.sleep(2)
+   print('''\033[1ma) Keep going, you aren't going to cower from the mere threat of being told off.
+            
+b) This is no different from willing punishment, you should go back.\033[0m\n''')
+   time.sleep(1)
+   choicetwo = input('What will you do? ')
+   if choicetwo == "a":
+      courage + 20
+      brain - 10
+      time.sleep(1)
+      print("\nIndistinctive whispering draws your attention, the multiple voices engage in what sounds to be an argument.\n")
+      time.sleep(4)
+      print('“——mess it up!” an ivory tone growls, “that was literally your one and only job!”\n')
+      time.sleep(3)
+      print("The——woman’s——voice sounds frustrated... unbelievably so.\n")
+      time.sleep(3)
+      print('“Yeah, yeah. My bad,” the second voice appears nonchalant to the obvious irritation the other party makes no effort to hide. “Next time I’ll remember to——”\n')
+      time.sleep(5)
+      print('““There won’t be a next time!” the woman abruptly cut off her company. “How could you let the MOP fall into \x1B[3mtheir\x1B[0m hands?!”\n')
+      time.sleep(5)
+      print('Excuse her? She was screaming her head off because of some... mop?\n')
+      time.sleep(3)
+      print('“Not my fault,” the second party droned, “the mercenary group has had their eye on the Map of the Other Plains for ages now——\x1B[3meverybody\x1B[0m knows that.”\n')
+      time.sleep(5)
+      print('Oh.\n')
+      time.sleep(1)
+      print('\x1B[3mOh.\x1B[0m\n')
+      time.sleep(1)
+      print('The Map of the Other Plains——a treasure anyone would be desperate to hoard.  It was——as the name——suggested, a map of the Other Plains.\n')
+      time.sleep(5)
+      print('Talk about a basic naming sense.\n')
+      time.sleep(2)
+      explanation = input("Speaking of which... Do you know about the Other Plains? ")
+      if explanation not in answer:
+         time.sleep(1)
+         print("\nThe Other Plains are——quite literally——the other plains. It refers to the other side of the border; a place that was suspected to still be semi-intact after the catastrophe——and still full of supplies. No one has been able to explore it because the border——the place that had been most devastated, and the place that was like a warzone——lies in between.\n")
+         time.sleep(8)
+         print("But, with the map, it’s different. People could navigate the messy terrains and survive in the desolate lands. It would be revolutionary for whoever got their hands on it.")
+         time.sleep(5)
+      time.sleep(1)
+      print("\nSo… the mercenary faction is currently in possession of it? And who did these voices belong to?\n")
+      time.sleep(4)
+      print('Were they independent? Or perhaps a part of a smaller faction?\n')
+      time.sleep(3)
+      print('“Anyway, the Grand Sage will chew you up for this mishap.”\n')
+      time.sleep(3)
+      print('\x1B[3mThe Grand Sage?\x1B[0m\n')
+      time.sleep(2)
+      print('The almighty leader of the Scholar Faction? \x1B[3mYour\x1B[0m faction?\n')
+      time.sleep(2)
+      print('Why did you not know about this? Why were they keeping this from everyone?\n')
+      time.sleep(3)
+      print('Sure, it was precious, but you feel like you have earned your place within the faction——built enough trust for them to tell you this.\n')
+      time.sleep(4)
+      print('Standing here spiralling down an anxiety alley won’t help anything. It’s clear that Amelix isn’t here, so you should leave.\n')
+      time.sleep(3)
+      print('“Not unless he doesn’t find out,” the second voice quipped. “I won’t say a thing, and if you keep your mouth shut, then all is well. Oh, not to mention shutting up the eavesdropping rat.”\n')
+      relationship_nico + 5
+      time.sleep(6)
+      print('Your heart freezes.\n')
+      time.sleep(1)
+      print('\x1B[3mThey know.\x1B[0m\n')
+      time.sleep(2)
+      print('Or... maybe it\'s a bluff?\n')
+      time.sleep(2)
+      print('''\033[1ma) Run. You wouldn't risk it.
+
+b) Stay still, there's now way they know you're here.\033[0m''')
+      time.sleep(1)
+      choicethree = input('\nWhat will you do? ')
+      time.sleep(1)
+      print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n")
+      time.sleep(1)
+      if choicethree == "a":
+         caution + 10
+         brawn + 10
+         time.sleep(1)
+         running()
+         time.sleep(1)
+      if choicethree == "b":
+         brain + 10
+         courage + 10
+         print('You stay dead silent, pressing yourself against the wall.\n')
+         time.sleep(3)
+         print('Silence follows and you can hear your heart hammering inside your chest.\n')
+         time.sleep(3)
+         print('\x1B[3mBadump. Badump.\x1B[0m\n')
+         time.sleep(2)
+         print('Your heart stops beating when you hear footsteps——coming towards \x1B[3myour\x1B[0m direction no less.\n')
+         time.sleep(4)
+         print('It\'s okay. Keep calm.\n')
+         time.sleep(2)
+         print('Keep calm.\n')
+         time.sleep(1)
+         print('Keep calm.\n')
+         time.sleep(1)
+         print('\x1B[3mKeep calm——\x1B[0m\n')
+         time.sleep(2)
+         print('"Peekaboo."\n')
+         time.sleep(1)
+         print('You jump, swivelling your head so fast you hit it against the wall.\n')
+         time.sleep(3)
+         print('Ouch.\n')
+         time.sleep(1)
+         print('Laughter shocks you back into reality.\n')
+         time.sleep(2)
+         print('A man stands barely five steps away from you——he looks quite young.\n')
+         time.sleep(3)
+         print('"Interesting."\n')
+         relationship_nico + 10
+         time.sleep(1)
+         print('You think you hear him mutter under his breath.\n')
+         time.sleep(2)
+         print('You two stare at each other, no one daring to make the first move.\n')
+         time.sleep(3)
+         print(f'"Uh, did {pron1} hit {pron2} head too hard? Why isn\'t {pron1} talking?" the woman joins the staring contest.\n')
+         time.sleep(5)
+         print(f'"Maybe {pron1}\'s enamoured by my beauty?" the man raises an eyebrow cockily.\n')
+         time.sleep(3)
+         print('You can\'t help but laugh.\n')
+         time.sleep(2)
+         print('"Well... at least she\'s making noise. Even at the expense of my confidence..."\n')
+         time.sleep(3)
+         print('You catch yourself quickly.\n')
+         time.sleep(2)
+         print('"Ahem. Ahem. Pardon me," you excuse yourself sheepishly.\n')
+         time.sleep(2)
+         print('"Noted," he didn\'t seem at all offended. If anything, he seemed nice, even if he talked about killing you——\n')
+         time.sleep(4)
+         print('You pause, eyes widening.\n')
+         time.sleep(2)
+         print('"Ah... haha..."\n')
+         time.sleep(2)
+         print('"Hmm?"\n')
+         time.sleep(1)
+         print('''\033[1ma) This is the same person that spoke about getting rid of you. You should leave——quickly.
+                  
+b) He hasn't't done anything yet... It couldn't hurt to stay a little longer, could it?\033[0m\n''')
+         time.sleep(1)
+         choicefour = input('What will you do? ')
+         time.sleep(1)
+         if choicefour == "a":
+            caution + 5
+            print('\nYou quickly glance around for an escape route.\n')
+            time.sleep(2)
+            print('The both stand in front of you, so if you escaped the way you came from...\n')
+            time.sleep(3)
+            print('You\'re willing to bet that you\'re faster.\n')
+            time.sleep(2)
+            print('Probably.\n')
+            time.sleep(2)
+            run = input('Will you take the risk? ')
+            time.sleep(1)
+            if run in answer:
+               courage + 5
+               time.sleep(1)
+               relationship_nico + 5
+               brawn + 10
+               running()
+               time.sleep(1)
+            else:
+               death()
+         elif choicefour == "b":
+            death()
+      print(f'“{name}? What happened?” A voice draws your attention, and you look up——Amelix stands there with a bewildered expression on her face. “Why do you look like you’ve just gone on an episode of WipeOut after crawling through the Grand Canyons?”\n')
+      time.sleep(7)
+      print('“Haha, very funny, now let’s go!” You aren’t sure how long your impromptu blockage will stop your pursuers.\n')
+      time.sleep(4)
+      print('You grab Amelix’s arm, dragging her out of the store and heading back towards your camp.\n')
+      time.sleep(4)
+      print('“Hey—— hey!” She cries out. “I can walk y’know! And where are our supplies?”\n')
+      time.sleep(4)
+      print('Her worries fall on deaf ears, your only mission now is to return in one piece.\n')
+      time.sleep(4)
+   elif choicetwo == "b":
+      brain + 10
+      time.sleep(1)
+      print('\nYeah, you\'re smarter than that.\n')
+      time.sleep(2)
+      print('You stop in your tracks, your attention turning to the suspicious bag in your hands.\n')
+      time.sleep(3)
+      print('What to do... What to do...\n')
+      time.sleep(2)
+      print('Oh well.')
+      finishMission()
+time.sleep(1)
+displayIntro()
+playerInput()
+time.sleep(1)
+print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
+time.sleep(1)
+print("\nYou carefully tread through the overgrown vines embracing the pale sidewalk, peeking in through the large entrance; a convenience store——or whatever of it remains.\n")
+time.sleep(5)
+print("The coast is clear.\n")
+time.sleep(2)
+print("You walk into the store, cautiously avoiding the fragments of glass scattered on the floor. The shelves are empty; most stores had been ransacked mere days after the catastrophe——larger factions hoarded certain materials and areas.\n")
+time.sleep(7)
+print("It's an absolute necessity for any survivors. That’s the mission you and Amelix were sent on.\n")
+time.sleep(3)
+print('Canned food fills the sack you lug over your shoulder, weighing you down and reducing your mobility. It\'s be better if you got back right away...\n')
+time.sleep(4)
+print('A small unsuspecting pouch catches your attention, and you crouch down to reach it.\n')
+time.sleep(3)
+print('You can hear a clinking sound from it——\n')
+time.sleep(2)
+print("A scream echoes in the distance.\n")
+time.sleep(2)
+print("\x1B[3mAmelix.\x1B[0m\n")
+time.sleep(1)
+print("No, no, she’s competent enough. There’s no way that she could have possibly…\n")
+time.sleep(3)
+print("But——she hadn’t signalled at the predetermined time... If something happened——\n")
+time.sleep(2)
+print("Aaack!——\n")
+time.sleep(1)
+print("The scream again. And this time, closer.\n")
+time.sleep(2)
+print("""\033[1ma) You couldn't bear it if something happened to her. And besides, the screaming was strange. You'll investigate it. 
+
+b) It might be a trap. Amelix is plenty capable to handle herself. You should continue with your mission quickly.\033[0m\n""")
+time.sleep(3)
+choiceone = input("What will you do? ")
+time.sleep(1)
+print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
+time.sleep(1)
+if choiceone == "a":
+   choiceOne()
+elif choiceone == "b":
+   reputation_points + 20
+   finishMission()
+else:
+   print('That is not a choice, please pick again.\n')
+   choiceone = input('What will you do? ')
+print('Soon, you make it back to your base camp.\n')
+time.sleep(5)
+print('You’re greeted at the entrance by Xandr——your exploration squad’s team leader.\n')
+time.sleep(3)
+print(f'“{name}, Amelix,” he acknowledges your presence with a slight nod of the head, his gaze travelling up and down you both.\n')
+time.sleep(5)
+if supplies < 1:
+   print('“You both are accounted for, although… I can’t seem to say the same for the supposed supplies,” his eyebrow rises in a questioning manner.\n')
+   time.sleep(5)
+   print(f'“Don’t look at me,” Amelix defends herself, “{pron1} had it! It was {pron2} job!”\n')
+   time.sleep(3)
+   print('You can always bet on your childhood friend to rat you out.\n')
+   time.sleep(2)
+   print('Amelix directs Xandr’s attention to you, and you start to crumble under the pressure.\n')
+   time.sleep(3)
+   print('“Well, you see... about that..." You gesture vaguely with your hands——as if that will help. “Aren’t you glad we made it back alive…?” You try, your question sounding more nervous than anything.\n')
+   time.sleep(6)
+   print('Xandr sighs heavily——as if he expects it.\n')
+   time.sleep(2)
+   print('“Go report to the Grand Sage."\n')
+   time.sleep(2)
+   print('The Grand Sage. Boy, you sure do have a lot of questions for him.\n')
+   time.sleep(3)
+   print('“Alrighty!” You say, louder than you should’ve.\n')
+   time.sleep(2)
+   print('“You aren’t getting away with it. I won’t take your scolding for you this time——“ Xandr pauses too far into his sentence. “Pardon me?"\n')
+   time.sleep(5)
+   print('But by the time he stops, you are already running off towards the camp.\n')
+   time.sleep(2)
+   print(f'“Did {pron1} hit {pron2} head?”\n')
+   time.sleep(2)
+   print('"Hell if I know."\n')
+   time.sleep(2)
+   print('Oblivious to the remarks being exchanged behind you, you enter the main camp, hand pushing the door open.\n')
+elif supplies == 1:
+   print('"I\'m taking that as a sign the mission was a success?" he asks, gesturing towards your chunky supply-filled sac.\n')
+   time.sleep(4)
+   print('You nod, handing it over to him.\n')
+   time.sleep(2)
+   print('The weight off your shoulders make you groan in relief.\n')
+   time.sleep(2)
+   print('"I don\'t get why \x1B[3mI\x1B[0m had to carry it," you complain.\n')
+   time.sleep(2)
+   print('Amelix snickers behind her hands.\n')
+   time.sleep(2)
+   print('Well who else was supposed to be on the lookout? You? Don\'t make me laugh."\n')
+   time.sleep(3)
+   print('"I would\'ve been a great lookout thank you very much!"\n')
+   time.sleep(3)
+   print(f'"Oh please, the {gender} who can barely put one foot in front of the other without tripping?"\n')
+   time.sleep(3)
+   if injury >= 1:
+      print('"I——" you began to protest, but the aching from your bloodied nose reminded you otherwise.\n')
+      time.sleep(3)
+      print('Your face flushes red, and  you turn away, pouting.\n')
+      time.sleep(2)
+      print(f'"Aww, is {name} shy?" Amelix follows your head turn, trying to make eye contact with you.\n')
+      time.sleep(3)
+      print('"Cute."\n')
+      relationship_amelix + 5
+      time.sleep(1)
+      print('You turn to look at her, even more flustered.\n')
+      time.sleep(2)
+      print('She laughs fondly at your reaction.\n')
+   elif injury < 1:
+      print('"Hardly! I\'m quite capable y\'know?!"\n')
+      time.sleep(2)
+      print('"Indeed you are..."\n')
+      relationship_xandr + 10
+      time.sleep(1)
+      print('"Hah! so you admit it——" you pause. Amelix looked just as bewildered as you were.\n')
+      time.sleep(3)
+      print('If she wasn\'t the one that said that...\n')
+      time.sleep(2)
+      print('You turn towards Xandr, looking at him wide-eyed. "Captain? Did you just——"\n')
+      time.sleep(3)
+      print('He clears his throat suspiciously.\n')
+   time.sleep(2)
+   print('"In any case... You should go report to the grand sage now."\n')
+   time.sleep(2)
+   print('Well that was a swift change of topic. You\'re not exactly keen to prolong the conversation, anyway.\n')
+time.sleep(4)
+print(f'“{name}, what a pleasant surprise,” such a decrepit voice——the man looks like he’ll keel over any day now.\n')
+time.sleep(6)
+print('“Grand Sage,” you greet him back formally, slightly bowing.\n')
+time.sleep(3)
+print('He smiles, beckoning for you to fully enter.\n')
+time.sleep(2)
+print('You can feel his gaze on you as you move to take a seat.\n')
+time.sleep(3)
+print('Seriously, what does he want? He\'d always unerved you...\n')
+time.sleep(2)
+print(f'"{name}," you look up, "how did your mission go?"\n')
+time.sleep(2)
+if supplies == 1:
+   print('"Good," you respond impasively, attention wandering elsewhere.\n')
+   time.sleep(3)
+   print('Respect your elders they say, but you can\'t bring yourself to when it regarded the Grand Sage.\n')
+   time.sleep(3)
+   print('The man was suspicious——no doubt about it. Still, you maintained some semblence of hierchy and respect.\n')
+   time.sleep(4)
+   print('"I didn\'t expect anything less."\n')
+   time.sleep(2)
+   print('You resist the urge to roll your eyes. Despite your blatant disrespect, he doesn\'t seem to care. It\'s so strange...\n')
+   time.sleep(4)
+   print('"Did you... notice anything... strange? During your mission?"\n')
+   time.sleep(2)
+   print('Strange? What s he going on about now? Wait——now that you think about it... the strange noises——screaming you heard.\n')
+   time.sleep(4)
+   print('''\033[1ma) Tell him about it. He may have some answers for you. 
+
+b) It wasn\'t much, so there\'s no need to report it to him.\033[0m\n''')
+   time.sleep(1)
+   choiceeight = input('What will you do? ')
+   time.sleep(1)
+   if choiceeight == "a":
+      print('"\nI did hear a strange screech," you mention, watching his reaction, "it didn\'t sound like trouble... rather... annoyance?\n')
+      time.sleep(4)
+      print('"Annoyance?" you think you see genuine confusion on his face.\n')
+      time.sleep(2)
+      print('"Thank you for telling me," his eyes narrow as he smiles.\n')
+      reputation_points + 10
+      time.sleep(2)
+      print('"You\'re dismissed."\n')
+      time.sleep(2)
+   if choiceeight == "b":
+      print('\nYou shake your head, pretending to recall the memories.\n')
+      time.sleep(2)
+      print('The Grand Sage observes you skeptically, but eventually resigns. "Very well. Dismissed."\n')
+      time.sleep(3)
+   print('You leave as quickly as your feet can carry you.')
+   time.sleep(2)
+   print('You quickly catch up with Amelix, relishing in her soothing company.')
+   time.sleep(3)
+if supplies < 1:
+   print('"Failed," you grumble in annoyance. You hate admitting your failures to him.')
+   reputation_points - 10
+   time.sleep(3)
+   print('"Oh? And why is that?"')
+   time.sleep(2)
+   print('''\033[1ma) Ask him——no, demand him for answers. You have to know what was going on.
+
+b) The Grand Sage is suspicious. Don't bring anything up, you can't trust him.\033[0m\n''')
+   time.sleep(1)
+   choicenine = input('What will you do? ')
+   time.sleep(1)
+   if choicenine == "a":
+      print('\nYou stand up from your seat, walking closer to the Grand Sage. "You know something, don\'t you."\n')
+      time.sleep(3)
+      print('You phrased it as a statement rather than a question. And from the smirk he wore on his face, you can tell that you\'re right.\n')
+      time.sleep(4)
+      print('"Oh dear... whatever do you mean," still feigning ignorance, "I\'m just an old man, what could I possibly know?\n')
+      time.sleep(3)
+      print('"You hold the highest position in the Scholar Faction, yet you still dare call youself \x1B[3mjust an old man\x1B[0m?"\n')
+      time.sleep(4)
+      print('His expression fell, and just as you thought you had won the battle of words——\n')
+      time.sleep(3)
+      print('"If you know that, show due respect," he ordered, looking down on you.\n')
+      time.sleep(2)
+      print('You scoff.\n')
+      time.sleep(1)
+      print('"Explain yourself. What\'s all this about us obtaining the Map of the Other Plains? Since when? Where? Why? \x1B[3mHow\x1B[0m?" your anger simmers.\n')
+      time.sleep(4)
+      print('"So they lost it," the Grand Sage hums, not the least bit surprised.\n')
+      time.sleep(2)
+      print('"\x1B[3mGrandfather.\x1B[0m"\n')
+      time.sleep(2)
+      print('He laughs. "That\'s the first time in a while that you\'ve used that title with me.". He meets your unwavering gaze, thoroughly amused.\n')
+      time.sleep(4)
+      print('"You\'ll understand in due time."\n')
+      time.sleep(2)
+      avoided()
+   if choicenine == "b":
+      print('As much as you want to tackle him down, right then and there, and demand answers, you have to go about it a different way. He’ll likely deny all accusations.\n')
+      time.sleep(5)
+      print(f'"Did I expect too much of you, grandchild?"\n')
+      time.sleep(2)
+      print('You stare at your \x1B[3mgrandfather\x1B[3m. You always despised calling him that. He didn\'t deserve that title.\n')
+      time.sleep(3)
+      print(f'You know what comes next. It feels like a set up each time, but you are once again sentenced to probation. Eveyone says you get let off easy because you\'re his grandchild, but it never feels that way to you.\n')
+      time.sleep(6)
+      print('Especially not when you know that the deceitful old man is——once again——plotting something.\n')
+      time.sleep(3)
+      print('Not ever since your parents—— your parent\'s... disappearance.\n')
+      time.sleep(3)
+      print('"Do you want to know?"\n')
+      time.sleep(2)
+      print('You quickly look up, glaring at the old man. "Know what?"\n')
+      time.sleep(2)
+      print('"Whatever your heart desires."\n')
+      time.sleep(2)
+      print('You\'re just going to tell me?\n')
+      time.sleep(2)
+      print('"Knowledge \x1B[3malways\x1B[0m comes for a price. The question is if you\'re willing to pay it."\n')
+      time.sleep(3)
+      print('''\033[1ma) You want to know the truth about everything. No matter the cost. 
+
+b) There's a catch to this—— there has to be. He's never been the type to be merciful, even to his own blood.\033[0m\n''')
+      time.sleep(1)
+      choiceten = input('What will you do? ')
+      time.sleep(1)
+      if choiceten == "a":
+         print('\n"Yes," you respond without hesitation.\n')
+         time.sleep(2)
+         print('He looks at you, amused. "You asked for it, alright?"\n')
+         time.sleep(2)
+         print('You don\'t reply, staring at him expectantly.\n')
+         time.sleep(2)
+         print('"Very well."\n')
+         time.sleep(1)
+         print('"We obtained the MOP not too long ago. Barely a week, precisely. No one else knew other than Nico and Elle."\n')
+         time.sleep(3)
+         print('You assume they were the two people you heard bickering.\n')
+         time.sleep(2)
+         print('"But at some point, the Mercenary Faction found out. And from what you\'ve told me, it seems like they\'ve stolen it from us," the Grand Sage muttered, showing visible annoyance.\n')
+         time.sleep(6)
+         print('"Scouts Nico and Elle will be punished accordingly," he sighs. "Surely you understand why we couldn\'t tell anyone, no?"\n')
+         time.sleep(4)
+         print('"Of course. But... you promised, grandfather. You swore on our bloodline that we wouldn\'t keep secrets."\n')
+         time.sleep(4)
+         print('He smiles at you. Shivers run down your spine.\n')
+         time.sleep(2)
+         print(f'"Do you know what happened to your parents, {name}?"\n')
+         time.sleep(2)
+         print('You freeze. Your parent\'s situation was a taboo topic of conversation between the two of you.\n')
+         time.sleep(3)
+         print('They were casted into the disaster zone. Under \x1B[3mmy\x1B[0m orders.\n')
+         time.sleep(2)
+         print('You swear you feel your heart stop beating.\n')
+         time.sleep(2)
+         print('You knew your grandfather was a bad person... but \x1B[3mthis\x1B[0m? Even you didn\'t see it coming.\n')
+         time.sleep(3)
+         print('"Why..."\n')
+         time.sleep(1)
+         print('"The progression of humanity is the most important thing to me."\n')
+         time.sleep(2)
+         print('Lies. He only cared about \x1B[3mleading\x1B[0m humanity. Not it\'s welfare.\n')
+         time.sleep(3)
+         print('"Satisfied?" you wanted to wipe that smirk right off his face. "Now to pay the price for learning this."\n')
+         time.sleep(4)
+         print('You flinch, taking a few steps away from him.\n')
+         time.sleep(2)
+         print('You have to get out of here. Otherwise——\n')
+         time.sleep(1)
+         print("⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n")
+         time.sleep(3)
+         print('\033[1mYOU HAVE DIED\033[0m\n')
+         time.sleep(3)
+         quit()
+      if choiceten == "b":
+         print('\n"Not on my life."\n')
+         time.sleep(1)
+         print('He laughs, his gaze never straying from you. "Smart one. You got that from your mother."\n')
+         time.sleep(3)
+         print('"Don\'t you dare say her name," you hiss defensively.\n')
+         time.sleep(2)
+         print('His eyebrows raise, and he dismisses you with nothing more than a gesture of the head.\n')
+         time.sleep(3)
+         avoided()
+print('Xandr soon approaches, regarding the two of you with a deadpan look.\n')
+time.sleep(4)
+print('You can never tell what he\'s thinking.\n')
+time.sleep(2)
+print('"Well?" he asks as if you were supposed to know what he meant, "anything else to report?"\n')
+time.sleep(4)
+print('As a matter of fact...\n')
+time.sleep(2)
+print('There\'s still that matter about the strange pouch you found.\n')
+time.sleep(3)
+print('It completely slipped your mind.\n')
+time.sleep(2)
+print('You reach into your pocket——Amelix glancing over you curiously.\n')
+time.sleep(4)
+print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n")
+time.sleep(1)
+shoppingScene()
+print('\nNight falls and dawn breaks, and before you know it, another day has arrived. You get up the moment sunlight peeks through the window, make a quick cup of coffee——funny how that hasn’t changed even after the catastrophe——and take a stroll outside.\n')
+time.sleep(7)
+print('The morning breeze blows softly, and you relish in its embrace. In the distance, you can see Xandr. He’s up early, as always.\n')
+time.sleep(4)
+print('As you are about to go talk to him, you notice scout guards approaching from the distance.\n')
+time.sleep(3)
+print('It\'s none of your business so you pay them no heed——wait, are they headed in \x1B[3myour\x1B[0m direction?\n')
+time.sleep(4)
+print(f'"Scout {name}?" the guard questions, you\'re coming with us."\n')
+time.sleep(3)
+print('"Under what pretense?"\n')
+time.sleep(2)
+print('"Under orders from the Grand Sage."\n')
+time.sleep(2)
+print('Of course. You should\'ve expected this. What nefarious plan does the old man have this time?\n')
+time.sleep(3)
+print('You begrudgingly follow, and the guards are pleasently surprised from the lack of retaliation.\n')
+time.sleep(3)
+print('At some point, you realise you\'re standing in the courtroom——when did that happen?\n')
+time.sleep(3)
+print('All eyes are on you; you can even see Amelix and Xandr sitting in the stands, watching fearfully. What was going on?\n')
+time.sleep(4)
+print(f'"Scout {name}, you have been accused of traitorous intent," you can also see your grandfather watching from the panel of judges——darn him.\n')
+time.sleep(5)
+print('"Excuse me?" you scoff. You——a traitor? Please, the world may as well have ended——ah... it did.\n')
+time.sleep(4)
+print(f'The guard continues, "{name} has collaborated with the Mercenary Faction to obtain the Map of the Other Plains."\n')
+time.sleep(4)
+print('The claim is so absurd you stand there, flabbergasted. In what universe have you ever interacted with the Mercenary Faction? They could at least make it believable if they\'re going to blame you.\n')
+time.sleep(6)
+print('You hear chatter arise in the background.\n')
+time.sleep(2)
+if reputation_points >= 20:
+   print(f'''\x1B[3m"{name} has betrayed us? That's hard to believe..."
+"The MOP? They've found it?"
+"You know how the Grand Sage is... he probably kept this under wraps until he couldn't..."
+"Did {name} really do this?"\x1B[0m\n''')
+   time.sleep(6)
+   print('The crowd is... on your side? That was a pleasent surprise. Maybe your reputation isn\'t as bad as you think it is.\n')
+   time.sleep(4)
+   print('The Grand Sage seemed displeased with the turn of tides. Take that you old man!\n')
+   time.sleep(3)
+   print('"Bring in the witnesses."\n')
+   time.sleep(2)
+   print('You just had to jinx yourself.\n')
+   time.sleep(2)
+elif reputation_points < 20:
+   print(f'''\x1B[3m"{name} has betrayed us? It's about time..."
+"The MOP? They've found it?"
+"The Grand Sage probably tried to cover up for his grandchild... poor him..."
+"{name} can't always get away with it. It's finally time {pron1} got what {pron1} deserves."\x1B[0m\n''')
+   time.sleep(6)
+   print('No one seems to be on your side. Well, you knew you didn\'t have the best reputation... but this is a little saddening.\n')
+   time.sleep(4)
+   if relationship_amelix > 50:
+      print(f'"{name} wouldn\'t do something like that!" a familiar voice cries out. Amelix.\n')
+      time.sleep(3)
+      print('It\'s nice to see \x1B[3msomeone\x1B[0m on your side at least.\n')
+      time.sleep(3)
+   if relationship_xandr >= 20:
+      print(f'"I agree with Scout Amelix. Scout {name} would never engage in that kind of behaviour."\n')
+      time.sleep(4)
+      print('Now that was a surprise, although you really shouldn\'t be. Xandr is standing up for you? You\'re beginning to see him in a new light.\n')
+      time.sleep(5)
+   print('"Bring in the witnesses."\n')
+   time.sleep(2)
+   print('Of course... This isn\'t going to end well...\n')
+   time.sleep(2)
+print('A man walks up, standing not too far in front of you. He looks familiar——\n')
+time.sleep(3)
+if relationship_nico >= 5:
+   print('Wait——the man from the other time, when you overheard their conversation?\n')
+   time.sleep(5)
+   print('He smiles when he notices you recognise him.\n')
+   relationship_nico + 5
+   time.sleep(2)
+print('''\x1B[3m"Kyaa!"
+"Scout Nico?"
+"Ah, he looks as wonderful as ever."\x1B[0m\n''')
+time.sleep(3)
+print('He sure is popular. But none of that matters to you if he was about to testify \x1B[3magainst\x1B[0m you.\n')
+time.sleep(4)
+print('"Scout Nico," the Grand Sage\'s voice bellows, "care to share what you witnessed?"\n')
+time.sleep(3)
+print('"Of course. A week ago, there was news of the MOP circling around. Naturally, this drew the attenion of the major factions. We fought tooth and nail to get our hands on it...\n')
+time.sleep(6)
+print('Is this where your betrayal is supposed to come in?\n')
+time.sleep(2)
+print('"We managed to obtain it first, but..."\n')
+time.sleep(2)
+print('What a waste of a pretty face if he was going to act like a——\n')
+time.sleep(3)
+if relationship_nico >= 10:
+   print('"But the Grand Sage demanded we keep it a secret."\n')
+   time.sleep(2)
+   print(f'Like an idio—— wait, what? Did you just hear that right? Isn\'t it supposed to go somewhere along the lines of \'this is when {name} stole it\' or something?\n')
+   time.sleep(6)
+   print('"Scout Nico!" the Grand Sage interupts, glaring down from his stand, "how dare you speak such treachery. It seem you, too, have betrayed us."')
+   time.sleep(5)
+   print('"The only betrayal is from you, Grand Sage."\n')
+   time.sleep(3)
+   print('"What bold accusations!"\n')
+   time.sleep(2)
+   print('A ripple a voices rise in the background.\n')
+   time.sleep(2)
+   print(f'''\x1B[3m"What? It\'s the Grand Sage's fault?"
+"Shush! We don't know that yet."
+"Why would Scout Nico lie, though?"
+"We can't blame the Grand Sage!"
+"I mean... it is believable. You know how the Grand Sage is..."\x1B[0m\n''')
+   time.sleep(7)
+   print('And just like that, you\'ve gotten practically everyone one your side.\n')
+   time.sleep(3)
+   print('You stare at Nico in quiet reverence.\n')
+   time.sleep(2)
+   print('He turns to you, and you whisper him something.\n')
+   time.sleep(2)
+   whisper = input("\033[1mWhat do you say to him? \033[0m")
+   thanks = ["thank you","thanks","thankyou","Thank You","Thankyou","Thanks"]
+   if whisper in thanks:
+      relationship_nico + 10
+      reputation_points + 5
+   time.sleep(2)
+   print('\n"ENOUGH!" the Grand Sage bellows.\n')
+   time.sleep(1)
+   print('But the chatter doesn\'t stop.\n')
+   time.sleep(2)
+   if brain > brawn:
+      print(f'''\x1B[3m"It does make sense, y'know."
+"Yeah... No offense but Scout {name} doesn't have the fitness for that."
+"True. {pron1}'s more the type to stay in and read books than go outside."
+"Like a total nerd."
+"So why would {pron1} ever side with the Mercenary Faction? That's unlike {pron2}."\x1B[0m\n''')
+      time.sleep(8)
+   elif brain < brawn:
+      print(f'''\x1B[3m"It does make sense, y'know."
+"Yeah... No offense but Scout {name} doesn't have the intelligence for that."
+"True. {pron1}'s probably never picked up a book in {pron1} life." 
+"{pron1} is more suited for the Mercenary Faction, but..."
+"Scout {name} can't pull of a betrayal like that, {pron1} doesn't have the wits."\x1B[0m\n''')
+      time.sleep(9)
+   print('Uhm, ouch. You\'re glad they\'re siding with you, but aren\'t they being too critical?\n')
+   reputation_points + 5
+   time.sleep(4)
+   print('Your feeling are getting hurt here!\n')
+   time.sleep(3)
+   print('Anyway. You risk glancing up at the judging panel. You see your grandfather shaking with anger——totally worth it.\n')
+   time.sleep(4)
+else:
+   print(f'"Scout {name} stole it from right under our noses and handed it over to the Mercenary Faction."\n')
+   time.sleep(3)
+   print('——like an idiot. Did he have to do this? Maybe it was to avoid his own punishment——you couldn\'t care less.\n')
+   time.sleep(4)
+   if caution > courage:
+      print('"I assume you have proof of that?" you cautiously question, though you have no doubt that they have fabricated something.\n')
+      time.sleep(4)
+      print(f'"Naturally." A letter is brought onto the stand. "Do you mind reading it, Scout {name}?"\n')
+      time.sleep(3)
+      print(f'''Suspiciously, you open the letter and begin to read it\'s contents:
+            
+{name}, you\'ve chosen the right side.
+It won\'t be long until the Scholar Faction falls and the Mercenary Faction——our faction, and now yours too——will reign supreme. 
+All we need is the Map of the Other Plains. You can do that, right?
+
+You\'ll be given an incentive; a down payment, if you will. Hopefully that can motivate you some more.
+
+Trust and faith,
+\033[1mLucas Camonte\033[0m\n''')
+      time.sleep(18)
+   if caution < courage:
+      print('"What the——?!" you cry out in disbelief. This was so unjust! "I\'m innocent man, I dunno what else to tell ya!."')
+      time.sleep(4)
+      print('"Order in the court," your grandfather looks painfully smug as he says that.')
+      time.sleep(3)
+      print('If only you could wrangle his neck. You swear you\'ll get to him before his age does.')
+      time.sleep(4)
+      print('"Oh please," you roll your eyes, "what are you going to tell me next, that you\'ve forged some sort of letter that reveals my betrayal?"')
+      time.sleep(5)
+      print('A Scout walks up to the stands holding a letter——unsealed.')
+      time.sleep(3)
+      print(f'''"No way..." you quickly grab it, ripping it open and reading it: 
+            
+{name}, you\'ve chosen the right side.
+It won\'t be long until the Scholar Faction falls and the Mercenary Faction——our faction, and now yours too——will reign supreme. 
+All we need is the Map of the Other Plains. You can do that, right?
+
+You\'ll be given an incentive; a down payment, if you will. Hopefully that can motivate you some more.
+
+Trust and faith,
+\033[1mLucas Camonte——Leader of the Mercenary Faction\033[0m\n''')
+      time.sleep(18)
+   print('Wait. Wait. How are people falling for this. Seriously? Has the Scholar Faction always been this stupid?\n')
+   time.sleep(5)
+   print('You really are inclining towards betraying them and joining the Mercenary Faction...\n')
+   time.sleep(4)
+   print('Wait——that\'s besides the point right now. You look around to see everyones reactions.\n')
+   time.sleep(3)
+   print('Thankfully, some look skeptical. They aren\'t on your side, but it\'s nice to know they still have common sense.\n')
+   time.sleep(5)
+   print('The Grand Sage opens his mouth to speak again. You can already tell you\'re not going to like this.\n')
+   time.sleep(4)
+   print(f'"Shop vendors, I believe you witnessed Scout {name} purchasing some items yesterday?"\n')
+   time.sleep(3)
+   print(f'The vendors of the shops you visited yesterday are brought up to testify. Can\'t a {gender} do a little shopping in peace?\n')
+   time.sleep(4)
+   if relationship_amelix > 50:
+      print(f'"Objection!" Amelix cries out from the sidelines, "I was a witness there too! That money was solely and fairly {name}\'s!"\n')
+      time.sleep(4)
+      print('You wish you could go hug her right now.\n')
+      relationship_amelix + 5
+      time.sleep(2)
+      print('"Can you prove that?" Scout Nico levels.\n')
+      time.sleep(2)
+      print('You wish that you could punch him right now.\n')
+      time.sleep(2)
+      if relationship_xandr > 20:
+         print('"I can testify as well," Xandr speaks up, and now you want to go and hug him too.\n')
+         relationship_xandr + 5
+         time.sleep(3)
+         print('A chorus of voices breaks out. Two reputable scouts just vouched for you, so who would refute them?\n')
+         time.sleep(4)
+      else:
+         print('When Amelix goes silent, Nico smiles in victory. God, you should just jump the stand and knock him down a peg or two.\n')
+         time.sleep(4)
+   else:
+      print('The evidence stacked against you isn\'t looking good right now.\n')
+      time.sleep(3)
+      print('You can only hope that the Scholar faction is indeed filled with \x1B[3mscholars\x1B[3m——people with brains.\n')
+      time.sleep(5)
+      print('Even a newborn baby can see how ludicrous this is.\n')
+      time.sleep(3)
+convince = 0
+if reputation_points > 20:
+   convince + 1
+if relationship_amelix > 50:
+   convince + 1
+if relationship_xandr > 20:
+   convince + 1
+if relationship_nico >= 20:
+   convince + 1
+print('A punishment can only be enacted with majority decision. Even if your grandfather agressively stands against you, he\'s just one person.\n')
+time.sleep(5)
+print('That\'s why you hold your breath, hoping your reputation and relationships can save you now.\n')
+time.sleep(3)
+print('After some more debating——most of which goes in one ear and out the other, a scout guard steps up.\n')
+time.sleep(3)
+print(f'"The votes are in. The judgement passed onto Scout {name} is..."\n')
+time.sleep(3)
+print('You can help your trembling hand. If you get evicted here, it would be no different from your parent\'s fate. You can\'t give your grandfather that satisfication.\n')
+time.sleep(5)
+print("n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n")
+time.sleep(1)
+if convince > 2:
+   print('\033[1mNOT GUILTY\033[0m\n')
+   time.sleep(2)
+   print('You nearly collapse from pure relief. The only thing keeping you standing is your grandfather\'s hateful gaze towards you——and probably Xandr and Amelix supporting you from the side, Nico hovering nearby.\n')
+   time.sleep(6)
+   print('You won this battle, and you have no intentions to lose the war, either...\n')
+   time.sleep(3)
+   revenge = input('\033[3mWill you get your revenge? \033[0m')
+   time.sleep(1)
+   if revenge in answer:
+      print('\nPlease wait for the release of Echoes of Eternity\'s sequel: \033[3mRedemption and Retribution\033[0m\n')
+      time.sleep(1)
+if convince <= 2:
+   print('\033[1mGUILTY\033[0m\n')
+   time.sleep(2)
+   print('Your legs give in from the shock. You... How? A crime you didn\'t even commit. You turn your head up to look your grandfather, his triumphant gaze pushing you off the edge.\n')
+   time.sleep(6)
+   print('You lost. This was how he got rid of your parents, too.\n')
+   time.sleep(3)
+   print('You are soon pulled out of the courtroom, dragged limply through the gates and condemned to the disaster zone.\n')
+   time.sleep(4)
+   print('\033[3mYOU HAVE BEEN EVICTED\033[0m\n')
+   time.sleep(1)
+quit()
