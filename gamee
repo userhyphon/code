@@ -1072,6 +1072,7 @@ else:
    print(f'"Scout {name} stole it from right under our noses and handed it over to the Mercenary Faction."\n')
    time.sleep(3)
    print('——like an idiot. Did he have to do this? Maybe it was to avoid his own punishment——you couldn\'t care less.\n')
+   reputation_points - 10
    time.sleep(4)
    if caution > courage:
       print('"I assume you have proof of that?" you cautiously question, though you have no doubt that they have fabricated something.\n')
