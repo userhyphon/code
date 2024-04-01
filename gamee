@@ -32,9 +32,6 @@ What you do matters——the fate of the world lies in \x1B[3myour\x1B[0m hands.
 Good luck.""")
       time.sleep(20)
 def playerInput():
-   time.sleep(1)
-   print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
-   time.sleep(1)
    global name
    name = input("\nWhat would you like to be called, traveller? ")
    time.sleep(1)
@@ -157,6 +154,7 @@ def avoided():
    print('“You did it… because you thought I was in trouble?”\n')
    time.sleep(3)
    print('"Yes...?"\n')
+   global relationship_amelix
    relationship_amelix + 10
    time.sleep(2)
    print('Amelix’s hand reaches over before you can stop her, and she ruffles up your hair.\n')
@@ -194,6 +192,9 @@ b) Persevere——you were a track sensation when the world was——not yet des
    time.sleep(1)
    choicefour = input('What will you do? ')
    time.sleep(1)
+   global brain
+   global brawn
+   global supplies
    if choicefour == "a":
       brain + 20
       print('\nYou chuck the open sac, the cans rolling out and blocking the path.\n')
@@ -229,6 +230,9 @@ b) Persevere——you were a track sensation when the world was——not yet des
    print('And then you run. You run and run and run——until you reach the entrance of the convenience store, panting and out of breath.\n')
    time.sleep(4)
 def finishMission():
+   global reputation_points
+   global relationship_xandr
+   global relationship_amelix
    reputation_points + 10
    relationship_xandr + 10
    relationship_amelix - 10
@@ -394,6 +398,13 @@ b) Call out her name to alert her that you\'re here.\033[0m\n''')
       choiceseven = input('What will you do? ')
       time.sleep(1)
 def choiceOne():
+   global relationship_amelix
+   global relationship_xandr
+   global relationship_nico
+   global caution
+   global courage
+   global brain
+   global brawn
    relationship_amelix + 10
    relationship_xandr - 5
    time.sleep(1)
@@ -602,6 +613,7 @@ b) He hasn't't done anything yet... It couldn't hurt to stay a little longer, co
       choicetwo = input('What will you do? ')
       time.sleep(1)
 displayIntro()
+time.sleep(1)
 playerInput()
 time.sleep(1)
 print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
