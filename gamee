@@ -44,7 +44,6 @@ def playerInput():
    global pron2
    global pron3
    global gender
-   global grandbaby
    if pronouns == "female":
       pron1 = "she"
       pron2 = "her"
@@ -56,20 +55,15 @@ def playerInput():
       pron3 = "his"
       gender = "boy"
    else:
-      time.sleep(1)
-      pron1 = input("\nWhat is your preferred FIRST pronoun [e.g. he/she/they]? ")
-      time.sleep(1)
-      pron2 = input("\nWhat is your preferred SECOND pronoun [e.g. his/her/their]? ")
-      time.sleep(1)
-      pron3 = input("\nWhat is your preferred THIRD pronoun [e.g. his/hers/theirs]? ")
+      pron1 = "they"
+      pron2 = "them"
+      pron3 = "theirs"
       gender = "kid"
 def shoppingScene():
-   global items
    items = ["dagger","waterskin","rope","quilt","crossbow","arrow","notebook","lead","lantern","matches"]
    global items_price
    items_price = [100, 30, 40, 70, 150, 35, 20, 2, 80, 30]
    time.sleep(1)
-   global coinbag
    coinbag = random.randint(100,300)
    print('\nYou decide to open the bag you found.\n')
    time.sleep(2)
@@ -111,11 +105,8 @@ def shoppingScene():
 7)    notebook —— 20c
 8)    lead —— 5c
 9)    lantern —— 80c
-10)   matches —— 30c
-
-You scan the items.''')
+10)   matches —— 30c\n''')
    time.sleep(3)
-   global spent
    spent = 0
    coins_left = coinbag
    while True:
@@ -192,6 +183,7 @@ def death():
    time.sleep(3)
    quit()
 def running():
+   time.sleep(1)
    print('\nYou bolt, not caring to look behind you. The sac of supplies is really weighing you down now——and by the sound of the footsteps behind you, they’re getting closer.\n')
    time.sleep(5)
    print('It’s do or die.\n')
@@ -214,7 +206,6 @@ b) Persevere——you were a track sensation when the world was——not yet des
       print('You\'re such a genius that you scare yourself sometimes.\n')
       time.sleep(2)
       print('LOL.\n')
-      time.sleep(1)
    elif choicefour == "b":
       brawn + 25
       print('\nYou run.\n')
@@ -231,7 +222,10 @@ b) Persevere——you were a track sensation when the world was——not yet des
       print('\x1B[3mStrike!\x1B[0m\n')
       time.sleep(1)
       print('Not what you expected... but it works.\n')
-      time.sleep(2)
+   else:
+      choicefour = input('What will you do? ')
+      time.sleep(1)
+   time.sleep(2)
    print('And then you run. You run and run and run——until you reach the entrance of the convenience store, panting and out of breath.\n')
    time.sleep(4)
 def finishMission():
@@ -286,7 +280,7 @@ b) Yeah, staying away from that creepy place is the best course of action. You w
       time.sleep(1)
       choicesix = input('What are you thinking? ')
       time.sleep(1)
-      if choicesix == "a":
+      if injury >= 1:
          courage + 5
          brain - 5
          print('\nAs you stroll, you become lost in your thoughts.\n')
@@ -311,7 +305,7 @@ b) Yeah, staying away from that creepy place is the best course of action. You w
          time.sleep(3)
          print('Talk about a bad omen...\n')
          time.sleep(2)
-      elif choicesix == "b":
+      elif injury == 0:
          brain + 10
          caution + 5
          print('\nYou\'re head feels lighter, and you can think better.\n')
@@ -320,9 +314,15 @@ b) Yeah, staying away from that creepy place is the best course of action. You w
          time.sleep(2)
          print('You get the feeling you would\'ve found out something you\'d rather not know...\n')
          time.sleep(4)
+      else:
+         choicesix = input('What are you thinking? ')
+         time.sleep(1)
    elif choicefive == "b":
       time.sleep(1)
       choiceOne()
+   else:
+      choicefive = input('What will you do? ')
+      time.sleep(1)
    print('The daylight soon dims during your walk.\n')
    time.sleep(2)
    print('You decide to round back. Amelix should be finishing up soon, too.\n')
@@ -363,7 +363,7 @@ b) Call out her name to alert her that you\'re here.\033[0m\n''')
          time.sleep(5)
          print('It eases the tension, and Amelix laughs at your sarcasm.\n')
          time.sleep(3)
-      if choicesix == "b":
+      elif choicesix == "b":
          print('\033[1mSTATUS: INJURED\033[0m\n')
          brawn - 5
          time.sleep(2)
@@ -390,12 +390,13 @@ b) Call out her name to alert her that you\'re here.\033[0m\n''')
       time.sleep(3)
       print('She punches your arm jokingly.\n')
       time.sleep(2)
-   elif choicefive == "b":
-      time.sleep(1)      
-      choiceOne()
+   else:
+      choiceseven = input('What will you do? ')
+      time.sleep(1)
 def choiceOne():
    relationship_amelix + 10
    relationship_xandr - 5
+   time.sleep(1)
    print("\nIt wouldn’t hurt to check.\n")
    time.sleep(2)
    print("You creep closer towards the source of the noise——or rather, where you assume the noise came from. It is in this eerie silence that you realise the volume of your footsteps literally announcing your presence to whom it may concern. Way to go… \n")
@@ -417,13 +418,13 @@ def choiceOne():
 b) This is no different from willing punishment, you should go back.\033[0m\n''')
    time.sleep(1)
    choicetwo = input('What will you do? ')
+   time.sleep(1)
    if choicetwo == "a":
       courage + 20
       brain - 10
-      time.sleep(1)
       print("\nIndistinctive whispering draws your attention, the multiple voices engage in what sounds to be an argument.\n")
       time.sleep(4)
-      print('“——mess it up!” an ivory tone growls, “that was literally your one and only job!”\n')
+      print('“——mess it up!” an ivory tone screams, “that was literally your one and only job!”\n')
       time.sleep(3)
       print("The——woman’s——voice sounds frustrated... unbelievably so.\n")
       time.sleep(3)
@@ -482,15 +483,12 @@ b) Stay still, there's now way they know you're here.\033[0m''')
       time.sleep(1)
       choicethree = input('\nWhat will you do? ')
       time.sleep(1)
-      print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n")
-      time.sleep(1)
       if choicethree == "a":
          caution + 10
          brawn + 10
-         time.sleep(1)
          running()
          time.sleep(1)
-      if choicethree == "b":
+      elif choicethree == "b":
          brain + 10
          courage + 10
          print('You stay dead silent, pressing yourself against the wall.\n')
@@ -513,7 +511,7 @@ b) Stay still, there's now way they know you're here.\033[0m''')
          time.sleep(1)
          print('You jump, swivelling your head so fast you hit it against the wall.\n')
          time.sleep(3)
-         print('Ouch.\n')
+         print('\x1B[3mOuch.\x1B[0m\n')
          time.sleep(1)
          print('Laughter shocks you back into reality.\n')
          time.sleep(2)
@@ -566,7 +564,6 @@ b) He hasn't't done anything yet... It couldn't hurt to stay a little longer, co
             time.sleep(1)
             if run in answer:
                courage + 5
-               time.sleep(1)
                relationship_nico + 5
                brawn + 10
                running()
@@ -575,6 +572,12 @@ b) He hasn't't done anything yet... It couldn't hurt to stay a little longer, co
                death()
          elif choicefour == "b":
             death()
+         else:
+            choicefour = input('What will you do? ')
+            time.sleep(1)
+      else:
+         choicethree = input('\nWhat will you do? ')
+         time.sleep(1)
       print(f'“{name}? What happened?” A voice draws your attention, and you look up——Amelix stands there with a bewildered expression on her face. “Why do you look like you’ve just gone on an episode of WipeOut after crawling through the Grand Canyons?”\n')
       time.sleep(7)
       print('“Haha, very funny, now let’s go!” You aren’t sure how long your impromptu blockage will stop your pursuers.\n')
@@ -587,7 +590,6 @@ b) He hasn't't done anything yet... It couldn't hurt to stay a little longer, co
       time.sleep(4)
    elif choicetwo == "b":
       brain + 10
-      time.sleep(1)
       print('\nYeah, you\'re smarter than that.\n')
       time.sleep(2)
       print('You stop in your tracks, your attention turning to the suspicious bag in your hands.\n')
@@ -596,7 +598,9 @@ b) He hasn't't done anything yet... It couldn't hurt to stay a little longer, co
       time.sleep(2)
       print('Oh well.')
       finishMission()
-time.sleep(1)
+   else:
+      choicetwo = input('What will you do? ')
+      time.sleep(1)
 displayIntro()
 playerInput()
 time.sleep(1)
@@ -634,8 +638,6 @@ b) It might be a trap. Amelix is plenty capable to handle herself. You should co
 time.sleep(3)
 choiceone = input("What will you do? ")
 time.sleep(1)
-print("\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
-time.sleep(1)
 if choiceone == "a":
    choiceOne()
 elif choiceone == "b":
@@ -643,7 +645,9 @@ elif choiceone == "b":
    finishMission()
 else:
    print('That is not a choice, please pick again.\n')
+   time.sleep(1)
    choiceone = input('What will you do? ')
+   time.sleep(1)
 print('Soon, you make it back to your base camp.\n')
 time.sleep(5)
 print('You’re greeted at the entrance by Xandr——your exploration squad’s team leader.\n')
@@ -760,25 +764,24 @@ b) It wasn\'t much, so there\'s no need to report it to him.\033[0m\n''')
    choiceeight = input('What will you do? ')
    time.sleep(1)
    if choiceeight == "a":
-      print('"\nI did hear a strange screech," you mention, watching his reaction, "it didn\'t sound like trouble... rather... annoyance?\n')
+      print('\n"I did hear a strange screech," you mention, watching his reaction, "it didn\'t sound like trouble... rather... annoyance?\n')
       time.sleep(4)
       print('"Annoyance?" you think you see genuine confusion on his face.\n')
       time.sleep(2)
-      print('"Thank you for telling me," his eyes narrow as he smiles.\n')
+      print('"Thank you for telling me," his eyes narrow as he smiles. "You\'re dismissed."\n')
       reputation_points + 10
-      time.sleep(2)
-      print('"You\'re dismissed."\n')
-      time.sleep(2)
-   if choiceeight == "b":
+      time.sleep(4)
+   elif choiceeight == "b":
       print('\nYou shake your head, pretending to recall the memories.\n')
       time.sleep(2)
       print('The Grand Sage observes you skeptically, but eventually resigns. "Very well. Dismissed."\n')
       time.sleep(3)
-   print('You leave as quickly as your feet can carry you.')
-   time.sleep(2)
-   print('You quickly catch up with Amelix, relishing in her soothing company.')
+   else:
+      choiceeight = input('What will you do? ')
+      time.sleep(1)
+   print('You leave as quickly as your feet can carry you, quickly cathing up with Amelix.\n')
    time.sleep(3)
-if supplies < 1:
+elif supplies < 1:
    print('"Failed," you grumble in annoyance. You hate admitting your failures to him.')
    reputation_points - 10
    time.sleep(3)
@@ -816,7 +819,7 @@ b) The Grand Sage is suspicious. Don't bring anything up, you can't trust him.\0
       print('"You\'ll understand in due time."\n')
       time.sleep(2)
       avoided()
-   if choicenine == "b":
+   elif choicenine == "b":
       print('As much as you want to tackle him down, right then and there, and demand answers, you have to go about it a different way. He’ll likely deny all accusations.\n')
       time.sleep(5)
       print(f'"Did I expect too much of you, grandchild?"\n')
@@ -893,7 +896,7 @@ b) There's a catch to this—— there has to be. He's never been the type to be
          print('\033[1mYOU HAVE DIED\033[0m\n')
          time.sleep(3)
          quit()
-      if choiceten == "b":
+      elif choiceten == "b":
          print('\n"Not on my life."\n')
          time.sleep(1)
          print('He laughs, his gaze never straying from you. "Smart one. You got that from your mother."\n')
@@ -903,6 +906,12 @@ b) There's a catch to this—— there has to be. He's never been the type to be
          print('His eyebrows raise, and he dismisses you with nothing more than a gesture of the head.\n')
          time.sleep(3)
          avoided()
+      else:
+         choiceten = input('What will you do? ')
+         time.sleep(1)
+   else:
+      choicenine = input('What will you do? ')
+      time.sleep(1)
 print('Xandr soon approaches, regarding the two of you with a deadpan look.\n')
 time.sleep(4)
 print('You can never tell what he\'s thinking.\n')
@@ -1090,7 +1099,7 @@ You\'ll be given an incentive; a down payment, if you will. Hopefully that can m
 Trust and faith,
 \033[1mLucas Camonte\033[0m\n''')
       time.sleep(18)
-   if caution < courage:
+   elif caution < courage:
       print('"What the——?!" you cry out in disbelief. This was so unjust! "I\'m innocent man, I dunno what else to tell ya!."')
       time.sleep(4)
       print('"Order in the court," your grandfather looks painfully smug as he says that.')
@@ -1171,7 +1180,7 @@ print(f'"The votes are in. The judgement passed onto Scout {name} is..."\n')
 time.sleep(3)
 print('You can help your trembling hand. If you get evicted here, it would be no different from your parent\'s fate. You can\'t give your grandfather that satisfication.\n')
 time.sleep(5)
-print("n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n")
+print("⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n")
 time.sleep(1)
 if convince > 2:
    print('\033[1mNOT GUILTY\033[0m\n')
@@ -1185,7 +1194,7 @@ if convince > 2:
    if revenge in answer:
       print('\nPlease wait for the release of Echoes of Eternity\'s sequel: \033[3mRedemption and Retribution\033[0m\n')
       time.sleep(1)
-if convince <= 2:
+elif convince <= 2:
    print('\033[1mGUILTY\033[0m\n')
    time.sleep(2)
    print('Your legs give in from the shock. You... How? A crime you didn\'t even commit. You turn your head up to look your grandfather, his triumphant gaze pushing you off the edge.\n')
