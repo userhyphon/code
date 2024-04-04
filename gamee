@@ -52,7 +52,7 @@ def playerInput():
       gender = "boy"
    else:
       pron1 = "they"
-      pron2 = "them"
+      pron2 = "their"
       pron3 = "theirs"
       gender = "kid"
 def shoppingScene():
@@ -505,7 +505,7 @@ b) Stay still, there's now way they know you're here.\033[0m''')
       elif choicethree == "b":
          brain + 10
          courage + 10
-         print('You stay dead silent, pressing yourself against the wall.\n')
+         print('\nYou stay dead silent, pressing yourself against the wall.\n')
          time.sleep(3)
          print('Silence follows and you can hear your heart hammering inside your chest.\n')
          time.sleep(3)
@@ -544,7 +544,7 @@ b) Stay still, there's now way they know you're here.\033[0m''')
          time.sleep(3)
          print('You can\'t help but laugh.\n')
          time.sleep(2)
-         print('"Well... at least she\'s making noise. Even at the expense of my confidence..."\n')
+         print(f'"Well... at least {pron1}\'s making noise. Even at the expense of my confidence..."\n')
          time.sleep(3)
          print('You catch yourself quickly.\n')
          time.sleep(2)
